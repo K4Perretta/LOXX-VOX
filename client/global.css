@@ -94,7 +94,7 @@
 
 @layer base {
   * {
-    box-sizing: border-box;
+    @apply border-border;
   }
 
   html {
@@ -102,13 +102,12 @@
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    @apply bg-background text-foreground;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: "Playfair Display", serif;
-    font-weight: 700;
+    @apply font-bold;
   }
 
   :where(p, span, li, a, button, label, td, th) {
