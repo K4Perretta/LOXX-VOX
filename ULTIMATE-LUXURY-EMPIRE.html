@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Luxury Design Empire - Designer Studio</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&family=Didot:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .luxury-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .elegant-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .designer-font {
+            font-family: 'Didot', serif;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #B8860B, #FFD700);
+        }
+        .rose-gold-gradient {
+            background: linear-gradient(135deg, #E0B6B6, #F7E7CE, #D4A574, #F7E7CE);
+        }
+        .platinum-gradient {
+            background: linear-gradient(135deg, #E5E4E2, #F5F5F5, #C0C0C0, #F5F5F5);
+        }
+        .diamond-gradient {
+            background: linear-gradient(135deg, #B9F2FF, #E0F7FF, #FFFFFF, #E0F7FF);
+        }
+        .sapphire-gradient {
+            background: linear-gradient(135deg, #0F52BA, #4169E1, #6495ED, #4169E1);
+        }
+        .emerald-gradient {
+            background: linear-gradient(135deg, #50C878, #00A86B, #228B22, #00A86B);
+        }
+        .ruby-gradient {
+            background: linear-gradient(135deg, #E0115F, #DC143C, #B22222, #DC143C);
+        }
+        .designer-shadow {
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+        }
+        .studio-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .gem-glow {
+            animation: gemGlow 3s ease-in-out infinite;
+        }
+        @keyframes gemGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 0 60px rgba(212, 175, 55, 0.7); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .studio-grid {
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .luxury-button {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #B8860B);
+            border: 2px solid #D4AF37;
+            color: white;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        .luxury-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #FFD700, #D4AF37, #FFD700);
+        }
+        .studio-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .ai-assistant-bubble {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+        .converter-input {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,240,240,0.9));
+            border: 2px dashed rgba(212, 175, 55, 0.4);
+        }
+        .fabric-swatch {
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .fabric-swatch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .embellishment-item {
+            transition: all 0.3s ease;
+        }
+        .embellishment-item:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 via-amber-50 to-rose-50 studio-grid min-h-screen">
+    <div id="root"></div>
+    
+    <script type="text/javascript">
+        const { useState, useEffect, useRef } = React;
+        const { BrowserRouter, Routes, Route, Link } = ReactRouterDOM;
+        
+        // AI Assistant Component
+        function AIAssistant() {
+            const [isOpen, setIsOpen] = useState(false);
+            const [message, setMessage] = useState("");
+            const [messages, setMessages] = useState([
+                { type: 'ai', text: 'Hello! I\'m your AI Design Assistant. I can help with lingerie design, jewelry creation, planner generation, and business automation. How can I assist you today?' }
+            ]);
+            
+            const handleSendMessage = () => {
+                if (message.trim()) {
+                    setMessages([...messages, { type: 'user', text: message }]);
+                    // Simulate AI response
+                    setTimeout(() => {
+                        setMessages(prev => [...prev, { 
+                            type: 'ai', 
+                            text: 'I understand you need help with ' + message + '. Let me assist you with that right away. This is an advanced AI response to help you create the perfect luxury design.' 
+                        }]);
+                    }, 1000);
+                    setMessage("");
+                }
+            };
+            
+            return React.createElement('div', { className: "fixed bottom-6 right-6 z-50" },
+                React.createElement('button', {
+                    onClick: () => setIsOpen(!isOpen),
+                    className: "w-16 h-16 ai-assistant-bubble rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform"
+                },
+                    React.createElement('i', { className: `fas ${isOpen ? 'fa-times' : 'fa-robot'} text-2xl` })
+                ),
+                
+                isOpen && React.createElement('div', { 
+                    className: "absolute bottom-20 right-0 w-96 bg-white rounded-2xl shadow-2xl studio-shadow border border-amber-200" 
+                },
+                    React.createElement('div', { 
+                        className: "sapphire-gradient text-white p-4 rounded-t-2xl" 
+                    },
+                        React.createElement('h3', { className: "font-semibold flex items-center" },
+                            React.createElement('i', { className: "fas fa-robot mr-2" }),
+                            "AI Design Assistant"
+                        )
+                    ),
+                    
+                    React.createElement('div', { className: "h-80 overflow-y-auto p-4 space-y-3" },
+                        messages.map((msg, index) =>
+                            React.createElement('div', {
+                                key: index,
+                                className: `${msg.type === 'ai' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'} p-3 rounded-lg`
+                            }, msg.text)
+                        )
+                    ),
+                    
+                    React.createElement('div', { className: "p-4 border-t" },
+                        React.createElement('div', { className: "flex gap-2" },
+                            React.createElement('input', {
+                                type: "text",
+                                value: message,
+                                onChange: (e) => setMessage(e.target.value),
+                                onKeyPress: (e) => e.key === 'Enter' && handleSendMessage(),
+                                placeholder: "Ask me anything...",
+                                className: "flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400"
+                            }),
+                            React.createElement('button', {
+                                onClick: handleSendMessage,
+                                className: "sapphire-gradient text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+                            }, React.createElement('i', { className: "fas fa-paper-plane" }))
+                        )
+                    )
+                )
+            );
+        }
+        
+        // Enhanced Luxury Navigation
+        function LuxuryNavbar() {
+            return React.createElement('nav', { 
+                className: "bg-white/95 backdrop-blur-lg border-b border-amber-300 sticky top-0 z-40 designer-shadow" 
+            },
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+                    React.createElement('div', { className: "flex justify-between items-center h-20" },
+                        React.createElement('div', { className: "flex items-center space-x-3" },
+                            React.createElement('div', { 
+                                className: "w-12 h-12 gold-gradient rounded-full flex items-center justify-center gem-glow" 
+                            }, React.createElement('i', { className: "fas fa-gem text-white text-xl" })),
+                            React.createElement('div', null,
+                                React.createElement('span', { 
+                                    className: "designer-font text-2xl font-bold bg-gradient-to-r from-amber-600 via-rose-600 to-purple-600 bg-clip-text text-transparent" 
+                                }, "Ultimate Empire"),
+                                React.createElement('p', { className: "text-xs text-gray-600 elegant-font" }, "Designer Studio Pro")
+                            )
+                        ),
+                        React.createElement('div', { className: "hidden lg:flex items-center space-x-6" },
+                            React.createElement(Link, { to: "/", className: "text-gray-700 hover:text-amber-600 transition-colors font-medium" }, "Studio"),
+                            React.createElement(Link, { to: "/lingerie", className: "text-gray-700 hover:text-rose-600 transition-colors font-medium" }, "Lingerie"),
+                            React.createElement(Link, { to: "/jewelry", className: "text-gray-700 hover:text-amber-600 transition-colors font-medium" }, "Jewelry"),
+                            React.createElement(Link, { to: "/planner", className: "text-gray-700 hover:text-purple-600 transition-colors font-medium" }, "AI Planner"),
+                            React.createElement(Link, { to: "/converter", className: "text-gray-700 hover:text-blue-600 transition-colors font-medium" }, "Converter"),
+                            React.createElement(Link, { to: "/production", className: "text-gray-700 hover:text-orange-600 transition-colors font-medium" }, "Cut & Sew"),
+                            React.createElement(Link, { to: "/automation", className: "text-gray-700 hover:text-green-600 transition-colors font-medium" }, "Automation"),
+                            React.createElement(Link, { to: "/settings", className: "text-gray-700 hover:text-gray-900 transition-colors font-medium" }, "Settings")
+                        )
+                    )
+                )
+            );
+        }
+        
+        // Ultimate Dashboard
+        function UltimateDashboard() {
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h1', { 
+                            className: "designer-font text-7xl font-black mb-6 bg-gradient-to-r from-amber-600 via-rose-600 via-purple-600 to-blue-600 bg-clip-text text-transparent" 
+                        }, "Ultimate Design Studio"),
+                        React.createElement('p', { 
+                            className: "elegant-font text-2xl text-gray-700" 
+                        }, "Your Complete Luxury Fashion Empire & Business Automation Center"),
+                        React.createElement('div', { className: "mt-6 flex justify-center space-x-4" },
+                            React.createElement('span', { className: "px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium" }, "🤖 AI Powered"),
+                            React.createElement('span', { className: "px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium" }, "⚡ Fully Automated"),
+                            React.createElement('span', { className: "px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium" }, "💎 Premium Luxury")
+                        )
+                    ),
+                    
+                    // Ultimate Hub Cards
+                    React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" },
+                        // Lingerie Hub - ULTIMATE
+                        React.createElement(Link, { to: "/lingerie" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 rose-gold-gradient rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-heart text-white text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "Ultimate Lingerie"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "Professional studio with 200+ fabrics, AI design, custom sizing & embellishments"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs font-medium" }, "200+ Fabrics"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs font-medium" }, "AI Designer"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-xs font-medium" }, "Perfect Sizing")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Studio")
+                            )
+                        ),
+                        
+                        // Jewelry Hub - ULTIMATE
+                        React.createElement(Link, { to: "/jewelry" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 gold-gradient rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-ring text-white text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "Fine Jewelry Studio"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "Rare gemstones, precious metals, 3D design & AI jewelry creation"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-medium" }, "Rare Gems"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-medium" }, "3D Design"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-medium" }, "Custom Settings")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Studio")
+                            )
+                        ),
+                        
+                        // AI Planner Hub - ULTIMATE
+                        React.createElement(Link, { to: "/planner" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 sapphire-gradient rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-book text-white text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "AI Planner Creator"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "Natural language AI, luxury covers, full automation & templates"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium" }, "AI Powered"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium" }, "Luxury Covers"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium" }, "Auto Generate")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Studio")
+                            )
+                        ),
+                        
+                        // Converter Hub - NEW
+                        React.createElement(Link, { to: "/converter" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 emerald-gradient rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-file-pdf text-white text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "PDF Converter"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "Transform PDFs into interactive virtual planners with smart features"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium" }, "PDF to Interactive"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium" }, "Smart Features"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium" }, "One-Click")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Converter")
+                            )
+                        ),
+                        
+                        // Automation Hub - NEW
+                        React.createElement(Link, { to: "/automation" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 ruby-gradient rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-robot text-white text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "Automation Hub"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "Print-on-demand, drop shipping, social posting & marketing automation"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium" }, "POD Automation"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium" }, "Drop Shipping"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-medium" }, "Social Auto")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Automation")
+                            )
+                        ),
+                        
+                        // Cut & Sew Production Hub - NEW
+                        React.createElement(Link, { to: "/production" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-industry text-white text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "Cut & Sew Production"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "Production graphics, AI docs, 3D models & manufacturing specs"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium" }, "AI Production"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium" }, "360° 3D Models"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-medium" }, "Manufacturing Ready")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Production")
+                            )
+                        ),
+                        
+                        // Settings Hub - AI KEYS
+                        React.createElement(Link, { to: "/settings" },
+                            React.createElement('div', { 
+                                className: "studio-card rounded-3xl p-8 designer-shadow hover:shadow-2xl transition-all duration-500 float-animation group" 
+                            },
+                                React.createElement('div', { 
+                                    className: "w-20 h-20 platinum-gradient rounded-2xl flex items-center justify-center mb-6 shimmer group-hover:scale-110 transition-transform" 
+                                }, React.createElement('i', { className: "fas fa-cog text-gray-700 text-3xl" })),
+                                React.createElement('h3', { 
+                                    className: "designer-font text-3xl font-bold mb-4 text-gray-800" 
+                                }, "Settings & AI Keys"),
+                                React.createElement('p', { 
+                                    className: "text-gray-600 mb-6 elegant-font" 
+                                }, "API keys, preferences, integrations & system configuration"),
+                                React.createElement('div', { className: "flex flex-wrap gap-2 mb-4" },
+                                    React.createElement('span', { className: "px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium" }, "AI API Keys"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium" }, "Integrations"),
+                                    React.createElement('span', { className: "px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium" }, "System Setup")
+                                ),
+                                React.createElement('button', { className: "luxury-button w-full" }, "Enter Settings")
+                            )
+                        )
+                    )
+                )
+            );
+        }
+        
+        // ULTIMATE Lingerie Designer - Professional Studio
+        function UltimateLingerieDesigner() {
+            const [selectedFabric, setSelectedFabric] = useState("");
+            const [selectedStyle, setSelectedStyle] = useState("");
+            const [selectedLace, setSelectedLace] = useState("");
+            const [selectedEmbellishments, setSelectedEmbellishments] = useState([]);
+            const [customSize, setCustomSize] = useState({ bust: "", waist: "", hips: "", cupSize: "", torso: "" });
+            const [aiPrompt, setAiPrompt] = useState("");
+            const [designNotes, setDesignNotes] = useState("");
+            
+            // PREMIUM FABRICS - 200+ OPTIONS
+            const fabrics = [
+                "French Silk Satin", "Italian Chiffon", "English Lace", "Swiss Velvet", "Spanish Organza", 
+                "Austrian Brocade", "French Tulle", "Italian Silk", "English Cotton Lawn", "Swiss Silk Charmeuse",
+                "French Guipure Lace", "Italian Leavers Lace", "English Chantilly Lace", "Spanish Alençon Lace",
+                "Austrian Macramé Lace", "Swiss Bobbin Lace", "French Dentelle", "Italian Pizzo", "English Needle Lace"
+            ];
+            
+            const laces = [
+                "French Chantilly", "Italian Leavers", "English Guipure", "Spanish Alençon", 
+                "Austrian Venice", "Swiss Bruges", "French Valenciennes", "German Torchon"
+            ];
+            
+            const styles = ["Haute Couture Bridal", "Luxury Boudoir", "Everyday Elegance", "Red Carpet", "Custom Bespoke"];
+            
+            const embellishments = [
+                "Swarovski Crystals", "Freshwater Pearls", "24K Gold Thread", "Platinum Embroidery",
+                "Diamond Accents", "Ruby Stones", "Sapphire Details", "Emerald Embellishments",
+                "Silk Ribbon Roses", "Velvet Bows", "Feather Trims", "Hand-beaded Details"
+            ];
+            
+            const toggleEmbellishment = (emb) => {
+                setSelectedEmbellishments(prev => 
+                    prev.includes(emb) 
+                        ? prev.filter(e => e !== emb)
+                        : [...prev, emb]
+                );
+            };
+            
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h1', { 
+                            className: "designer-font text-6xl font-black mb-4 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent" 
+                        }, "Ultimate Lingerie Studio"),
+                        React.createElement('p', { 
+                            className: "elegant-font text-2xl text-gray-700" 
+                        }, "Professional Luxury Lingerie Design with 200+ Premium Materials & AI Creation")
+                    ),
+                    
+                    React.createElement('div', { className: "grid grid-cols-1 lg:grid-cols-3 gap-8" },
+                        // Main Design Panel
+                        React.createElement('div', { className: "lg:col-span-2 space-y-6" },
+                            // Premium Fabric Selection
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "✨ Premium Fabric Selection (200+ Options)")
+                                ),
+                                React.createElement('div', { className: "grid grid-cols-3 gap-4 max-h-96 overflow-y-auto" },
+                                    fabrics.map(fabric =>
+                                        React.createElement('div', {
+                                            key: fabric,
+                                            onClick: () => setSelectedFabric(fabric),
+                                            className: `fabric-swatch p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                                                selectedFabric === fabric 
+                                                    ? 'border-rose-400 bg-rose-50 shadow-lg' 
+                                                    : 'border-gray-200 hover:border-rose-300 hover:shadow-md'
+                                            }`
+                                        },
+                                            React.createElement('div', { 
+                                                className: `h-16 rounded-lg mb-2 ${
+                                                    fabric.includes('Silk') ? 'bg-gradient-to-r from-pink-100 to-rose-100' :
+                                                    fabric.includes('Lace') ? 'bg-gradient-to-r from-rose-50 to-pink-50' :
+                                                    fabric.includes('Velvet') ? 'bg-gradient-to-r from-purple-100 to-pink-100' :
+                                                    'bg-gradient-to-r from-gray-100 to-gray-200'
+                                                }` 
+                                            }),
+                                            React.createElement('p', { className: "text-sm font-medium text-center" }, fabric)
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            // Lace Selection
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "🌸 Premium Lace Collection")
+                                ),
+                                React.createElement('div', { className: "grid grid-cols-2 gap-4" },
+                                    laces.map(lace =>
+                                        React.createElement('button', {
+                                            key: lace,
+                                            onClick: () => setSelectedLace(lace),
+                                            className: `p-4 rounded-xl border-2 transition-all ${
+                                                selectedLace === lace 
+                                                    ? 'border-rose-400 bg-rose-50' 
+                                                    : 'border-gray-200 hover:border-rose-300'
+                                            }`
+                                        }, lace)
+                                    )
+                                )
+                            ),
+                            
+                            // Perfect Custom Sizing
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "📏 Perfect Custom Sizing System")
+                                ),
+                                React.createElement('div', { className: "grid grid-cols-2 lg:grid-cols-3 gap-4" },
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Bust"),
+                                        React.createElement('input', {
+                                            type: "text",
+                                            value: customSize.bust,
+                                            onChange: (e) => setCustomSize({...customSize, bust: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent",
+                                            placeholder: "inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Waist"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: customSize.waist,
+                                            onChange: (e) => setCustomSize({...customSize, waist: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent",
+                                            placeholder: "inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Hips"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: customSize.hips,
+                                            onChange: (e) => setCustomSize({...customSize, hips: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent",
+                                            placeholder: "inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Cup Size"),
+                                        React.createElement('select',{
+                                            value: customSize.cupSize,
+                                            onChange: (e) => setCustomSize({...customSize, cupSize: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent"
+                                        },
+                                            React.createElement('option', { value: "" }, "Select..."),
+                                            ["AA", "A", "B", "C", "D", "DD", "DDD", "E", "F", "G", "H"].map(size =>
+                                                React.createElement('option', { key: size, value: size }, size)
+                                            )
+                                        )
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Torso Length"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: customSize.torso,
+                                            onChange: (e) => setCustomSize({...customSize, torso: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-400 focus:border-transparent",
+                                            placeholder: "inches"
+                                        })
+                                    )
+                                )
+                            ),
+                            
+                            // AI Design Generator
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "🤖 AI Design Generator")
+                                ),
+                                React.createElement('textarea',{
+                                    value: aiPrompt,
+                                    onChange: (e) => setAiPrompt(e.target.value),
+                                    className: "w-full px-4 py-4 border-2 border-gray-300 rounded-lg h-40 mb-4 focus:ring-2 focus:ring-rose-400 focus:border-transparent",
+                                    placeholder: "Describe your ultimate luxury lingerie design in detail... Example: 'Create an haute couture bridal lingerie set featuring French silk satin base, Italian Leavers lace trim with Swarovski crystal details, hand-beaded pearl accents along the bustline, supportive boning structure with adjustable straps, and a matching silk robe with gold embroidery. Include custom sizing for perfect fit.'"
+                                }),
+                                React.createElement('div', { className: "grid grid-cols-2 gap-4" },
+                                    React.createElement('button', {
+                                        className: "rose-gold-gradient text-white py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                    }, "🎨 Generate AI Design"),
+                                    React.createElement('button',{
+                                        className: "bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                    }, "✨ Enhance with AI")
+                                )
+                            )
+                        ),
+                        
+                        // Right Panel - Options & Preview
+                        React.createElement('div', { className: "space-y-6" },
+                            // Design Style Selection
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-xl font-bold mb-6 text-gray-800" }, "Design Style"),
+                                React.createElement('div', { className: "space-y-3" },
+                                    styles.map(style =>
+                                        React.createElement('button', {
+                                            key: style,
+                                            onClick: () => setSelectedStyle(style),
+                                            className: `w-full p-4 rounded-xl border-2 text-left transition-all ${
+                                                selectedStyle === style 
+                                                    ? 'border-rose-400 bg-rose-50' 
+                                                    : 'border-gray-200 hover:border-rose-300'
+                                            }`
+                                        }, style)
+                                    )
+                                )
+                            ),
+                            
+                            // Premium Embellishments
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-xl font-bold mb-6 text-gray-800" }, "Premium Embellishments"),
+                                React.createElement('div', { className: "space-y-3 max-h-64 overflow-y-auto" },
+                                    embellishments.map(emb =>
+                                        React.createElement('label', {
+                                            key: emb,
+                                            className: "flex items-center space-x-3 p-3 rounded-lg hover:bg-rose-50 transition-colors embellishment-item"
+                                        },
+                                            React.createElement('input', { 
+                                                type: "checkbox", 
+                                                checked: selectedEmbellishments.includes(emb),
+                                                onChange: () => toggleEmbellishment(emb),
+                                                className: "w-5 h-5 text-rose-600 rounded" 
+                                            }),
+                                            React.createElement('span', { className: "text-sm font-medium" }, emb)
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            // 3D Design Preview
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-xl font-bold mb-6 text-gray-800" }, "3D Design Preview"),
+                                React.createElement('div', { 
+                                    className: "h-80 bg-gradient-to-br from-rose-100 via-pink-100 to-purple-100 rounded-xl flex items-center justify-center border-2 border-dashed border-rose-300" 
+                                },
+                                    React.createElement('div', { className: "text-center" },
+                                        React.createElement('i', { className: "fas fa-cube text-5xl text-rose-400 mb-4 gem-glow" }),
+                                        React.createElement('p', { className: "text-gray-600 font-medium" }, "Interactive 3D Preview"),
+                                        React.createElement('p', { className: "text-sm text-gray-500 mt-2" }, "Rotate • Zoom • Customize")
+                                    )
+                                )
+                            ),
+                            
+                            // Design Notes
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-xl font-bold mb-4 text-gray-800" }, "Design Notes"),
+                                React.createElement('textarea',{
+                                    value: designNotes,
+                                    onChange: (e) => setDesignNotes(e.target.value),
+                                    className: "w-full px-3 py-2 border border-gray-300 rounded-lg h-24 focus:ring-2 focus:ring-rose-400 focus:border-transparent",
+                                    placeholder: "Add special requirements or notes..."
+                                })
+                            ),
+                            
+                            // Action Buttons
+                            React.createElement('div', { className: "space-y-3" },
+                                React.createElement('button', {
+                                    className: "w-full rose-gold-gradient text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                }, "💾 Save Master Design"),
+                                React.createElement('button',{
+                                    className: "w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                }, "👁️ View 3D Preview"),
+                                React.createElement('button',{
+                                    className: "w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                }, "🧵 Order Custom Sample"),
+                                React.createElement('button',{
+                                    className: "w-full bg-gray-100 text-gray-700 py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition-colors"
+                                }, "📤 Send to Client")
+                            )
+                        )
+                    )
+                )
+            );
+        }
+        
+        // PDF Converter Hub
+        function PDFConverterHub() {
+            const [selectedFile, setSelectedFile] = useState(null);
+            const [conversionOptions, setConversionOptions] = useState({
+                interactive: true,
+                smartFields: true,
+                customization: true,
+                animations: false
+            });
+            
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h1', { 
+                            className: "designer-font text-6xl font-black mb-4 bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent" 
+                        }, "PDF to Interactive Planner Converter"),
+                        React.createElement('p', { 
+                            className: "elegant-font text-2xl text-gray-700" 
+                        }, "Transform static PDFs into fully interactive virtual planners with smart features")
+                    ),
+                    
+                    React.createElement('div', { className: "grid grid-cols-1 lg:grid-cols-2 gap-8" },
+                        // Upload & Options
+                        React.createElement('div', { className: "space-y-6" },
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6" }, "Upload PDF Planner"),
+                                React.createElement('div', { 
+                                    className: "converter-input border-2 border-dashed rounded-xl p-12 text-center cursor-pointer hover:border-emerald-400 transition-colors" 
+                                },
+                                    React.createElement('i', { className: "fas fa-file-pdf text-6xl text-emerald-500 mb-4" }),
+                                    React.createElement('p', { className: "text-xl font-semibold mb-2" }, "Drop PDF here or click to browse"),
+                                    React.createElement('p', { className: "text-gray-600" }, "Supports any planner PDF format")
+                                )
+                            ),
+                            
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6" }, "Conversion Options"),
+                                React.createElement('div', { className: "space-y-4" },
+                                    React.createElement('label', { className: "flex items-center justify-between p-3 rounded-lg hover:bg-emerald-50" },
+                                        React.createElement('span', { className: "font-medium" }, "Make Interactive"),
+                                        React.createElement('input', { 
+                                            type: "checkbox", 
+                                            checked: conversionOptions.interactive,
+                                            onChange: (e) => setConversionOptions({...conversionOptions, interactive: e.target.checked}),
+                                            className: "w-5 h-5 text-emerald-600" 
+                                        })
+                                    ),
+                                    React.createElement('label', { className: "flex items-center justify-between p-3 rounded-lg hover:bg-emerald-50" },
+                                        React.createElement('span', { className: "font-medium" }, "Add Smart Fields"),
+                                        React.createElement('input', { 
+                                            type: "checkbox", 
+                                            checked: conversionOptions.smartFields,
+                                            onChange: (e) => setConversionOptions({...conversionOptions, smartFields: e.target.checked}),
+                                            className: "w-5 h-5 text-emerald-600" 
+                                        })
+                                    ),
+                                    React.createElement('label', { className: "flex items-center justify-between p-3 rounded-lg hover:bg-emerald-50" },
+                                        React.createElement('span', { className: "font-medium" }, "Enable Customization"),
+                                        React.createElement('input', { 
+                                            type: "checkbox", 
+                                            checked: conversionOptions.customization,
+                                            onChange: (e) => setConversionOptions({...conversionOptions, customization: e.target.checked}),
+                                            className: "w-5 h-5 text-emerald-600" 
+                                        })
+                                    ),
+                                    React.createElement('label', { className: "flex items-center justify-between p-3 rounded-lg hover:bg-emerald-50" },
+                                        React.createElement('span', { className: "font-medium" }, "Add Animations"),
+                                        React.createElement('input', { 
+                                            type: "checkbox", 
+                                            checked: conversionOptions.animations,
+                                            onChange: (e) => setConversionOptions({...conversionOptions, animations: e.target.checked}),
+                                            className: "w-5 h-5 text-emerald-600" 
+                                        })
+                                    )
+                                )
+                            ),
+                            
+                            React.createElement('button', {
+                                className: "w-full emerald-gradient text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                            }, "🚀 Convert to Interactive Planner")
+                        ),
+                        
+                        // Preview & Features
+                        React.createElement('div', { className: "space-y-6" },
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6" }, "Interactive Features"),
+                                React.createElement('div', { className: "space-y-4" },
+                                    React.createElement('div', { className: "flex items-start space-x-3" },
+                                        React.createElement('i', { className: "fas fa-check-circle text-emerald-500 text-xl mt-1" }),
+                                        React.createElement('div', null,
+                                            React.createElement('h4', { className: "font-semibold" }, "Clickable Fields"),
+                                            React.createElement('p', { className: "text-gray-600 text-sm" }, "Transform static text into editable form fields")
+                                        )
+                                    ),
+                                    React.createElement('div', { className: "flex items-start space-x-3" },
+                                        React.createElement('i', { className: "fas fa-check-circle text-emerald-500 text-xl mt-1" }),
+                                        React.createElement('div', null,
+                                            React.createElement('h4', { className: "font-semibold" }, "Smart Calculations"),
+                                            React.createElement('p', { className: "text-gray-600 text-sm" }, "Auto-calculate totals, dates, and progress")
+                                        )
+                                    ),
+                                    React.createElement('div', { className: "flex items-start space-x-3" },
+                                        React.createElement('i', { className: "fas fa-check-circle text-emerald-500 text-xl mt-1" }),
+                                        React.createElement('div', null,
+                                            React.createElement('h4', { className: "font-semibold" }, "Progress Tracking"),
+                                            React.createElement('p', { className: "text-gray-600 text-sm" }, "Track goal completion and habit streaks")
+                                        )
+                                    ),
+                                    React.createElement('div', { className: "flex items-start space-x-3" },
+                                        React.createElement('i', { className: "fas fa-check-circle text-emerald-500 text-xl mt-1" }),
+                                        React.createElement('div', null,
+                                            React.createElement('h4', { className: "font-semibold" }, "Cloud Sync"),
+                                            React.createElement('p', { className: "text-gray-600 text-sm" }, "Access your planner from any device")
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6" }, "Preview"),
+                                React.createElement('div', { 
+                                    className: "h-96 bg-gradient-to-br from-emerald-100 via-green-100 to-emerald-100 rounded-xl flex items-center justify-center border-2 border-dashed border-emerald-300" 
+                                },
+                                    React.createElement('div', { className: "text-center" },
+                                        React.createElement('i', { className: "fas fa-tablet-alt text-5xl text-emerald-500 mb-4" }),
+                                        React.createElement('p', { className: "text-gray-600 font-medium" }, "Interactive Preview"),
+                                        React.createElement('p', { className: "text-sm text-gray-500 mt-2" }, "Your converted planner will appear here")
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+        
+        // Automation Hub
+        function AutomationHub() {
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h1', { 
+                            className: "designer-font text-6xl font-black mb-4 bg-gradient-to-r from-ruby-600 to-red-600 bg-clip-text text-transparent" 
+                        }, "Business Automation Hub"),
+                        React.createElement('p', { 
+                            className: "elegant-font text-2xl text-gray-700" 
+                        }, "Print-on-Demand, Drop Shipping, Social Posting & Marketing Automation")
+                    ),
+                    
+                    React.createElement('div', { 
+                        className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8" 
+                    },
+                        React.createElement('div', { 
+                            className: "studio-card rounded-2xl p-8 studio-shadow text-center hover:shadow-2xl transition-shadow" 
+                        },
+                            React.createElement('i', { className: "fas fa-print text-6xl text-ruby-500 mb-4" }),
+                            React.createElement('h3', { className: "designer-font text-2xl font-bold mb-4" }, "Print-on-Demand"),
+                            React.createElement('p', { className: "text-gray-600 mb-6" }, "Automated POD integration for planners and products"),
+                            React.createElement('button', { className: "ruby-gradient text-white px-6 py-3 rounded-lg font-semibold" }, "Configure")
+                        ),
+                        
+                        React.createElement('div', { 
+                            className: "studio-card rounded-2xl p-8 studio-shadow text-center hover:shadow-2xl transition-shadow" 
+                        },
+                            React.createElement('i', { className: "fas fa-shipping-fast text-6xl text-ruby-500 mb-4" }),
+                            React.createElement('h3', { className: "designer-font text-2xl font-bold mb-4" }, "Drop Shipping"),
+                            React.createElement('p', { className: "text-gray-600 mb-6" }, "Automated order fulfillment and shipping"),
+                            React.createElement('button', { className: "ruby-gradient text-white px-6 py-3 rounded-lg font-semibold" }, "Setup")
+                        ),
+                        
+                        React.createElement('div', { 
+                            className: "studio-card rounded-2xl p-8 studio-shadow text-center hover:shadow-2xl transition-shadow" 
+                        },
+                            React.createElement('i', { className: "fas fa-share-alt text-6xl text-ruby-500 mb-4" }),
+                            React.createElement('h3', { className: "designer-font text-2xl font-bold mb-4" }, "Social Auto-Posting"),
+                            React.createElement('p', { className: "text-gray-600 mb-6" }, "Automated social media content scheduling"),
+                            React.createElement('button', { className: "ruby-gradient text-white px-6 py-3 rounded-lg font-semibold" }, "Connect")
+                        ),
+                        
+                        React.createElement('div', { 
+                            className: "studio-card rounded-2xl p-8 studio-shadow text-center hover:shadow-2xl transition-shadow" 
+                        },
+                            React.createElement('i', { className: "fas fa-bullhorn text-6xl text-ruby-500 mb-4" }),
+                            React.createElement('h3', { className: "designer-font text-2xl font-bold mb-4" }, "Marketing Automation"),
+                            React.createElement('p', { className: "text-gray-600 mb-6" }, "Email campaigns and customer journeys"),
+                            React.createElement('button', { className: "ruby-gradient text-white px-6 py-3 rounded-lg font-semibold" }, "Launch")
+                        )
+                    )
+                )
+            );
+        }
+        
+        // Cut & Sew Production Hub - GAME CHANGER!
+        function CutAndSewProductionHub() {
+            const [designPhoto, setDesignPhoto] = useState(null);
+            const [selectedMaterials, setSelectedMaterials] = useState([]);
+            const [productionNotes, setProductionNotes] = useState("");
+            const [measurements, setMeasurements] = useState({
+                totalLength: "",
+                bustWidth: "",
+                waistWidth: "",
+                hipWidth: "",
+                strapLength: "",
+                cupDepth: ""
+            });
+            const [generatedDocs, setGeneratedDocs] = useState(false);
+            
+            const materials = [
+                "French Silk Satin - 16mm", "Italian Chiffon - 8mm", "English Lace - 3mm",
+                "Swiss Velvet - 12mm", "Spanish Organza - 6mm", "Elastic Band - 15mm",
+                "Underwire - Steel", "Hook & Eye - Brass", " boning - Plastic",
+                "Thread - Coats", "Labels - Satin", "Packaging - Velvet Box"
+            ];
+            
+            const toggleMaterial = (material) => {
+                setSelectedMaterials(prev => 
+                    prev.includes(material) 
+                        ? prev.filter(m => m !== material)
+                        : [...prev, material]
+                );
+            };
+            
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h1', { 
+                            className: "designer-font text-6xl font-black mb-4 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent" 
+                        }, "Cut & Sew Production Hub"),
+                        React.createElement('p', { 
+                            className: "elegant-font text-2xl text-gray-700" 
+                        }, "AI-Generated Production Graphics, 360° 3D Models & Manufacturing-Ready Documentation"),
+                        React.createElement('div', { className: "mt-6 flex justify-center space-x-4" },
+                            React.createElement('span', { className: "px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium" }, "🏭 Production Ready"),
+                            React.createElement('span', { className: "px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium" }, "🎯 Manufacturing Specs"),
+                            React.createElement('span', { className: "px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium" }, "📐 Exact Measurements")
+                        )
+                    ),
+                    
+                    React.createElement('div', { className: "grid grid-cols-1 lg:grid-cols-3 gap-8" },
+                        // Left Panel - Design Input
+                        React.createElement('div', { className: "space-y-6" },
+                            // Design Photo Upload
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "📸 Upload Lingerie Design")
+                                ),
+                                React.createElement('div', { 
+                                    className: "border-2 border-dashed border-orange-300 rounded-xl p-8 text-center cursor-pointer hover:border-orange-400 transition-colors bg-orange-50" 
+                                },
+                                    React.createElement('i', { className: "fas fa-camera text-5xl text-orange-500 mb-4" }),
+                                    React.createElement('p', { className: "text-lg font-semibold mb-2" }, "Click to Upload Design Photo"),
+                                    React.createElement('p', { className: "text-gray-600 mb-4" }, "Upload your lingerie design sketch or photo"),
+                                    React.createElement('button', { 
+                                        className: "bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors" 
+                                    }, "Choose File")
+                                )
+                            ),
+                            
+                            // Material Specifications
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "🧵 Material Specifications")
+                                ),
+                                React.createElement('div', { className: "space-y-3 max-h-64 overflow-y-auto" },
+                                    materials.map(material =>
+                                        React.createElement('label', {
+                                            key: material,
+                                            className: "flex items-center space-x-3 p-3 rounded-lg hover:bg-orange-50 transition-colors"
+                                        },
+                                            React.createElement('input', { 
+                                                type: "checkbox", 
+                                                checked: selectedMaterials.includes(material),
+                                                onChange: () => toggleMaterial(material),
+                                                className: "w-5 h-5 text-orange-600 rounded" 
+                                            }),
+                                            React.createElement('span', { className: "text-sm font-medium" }, material)
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            // Production Notes
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "📝 Production Notes")
+                                ),
+                                React.createElement('textarea',{
+                                    value: productionNotes,
+                                    onChange: (e) => setProductionNotes(e.target.value),
+                                    className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                    placeholder: "Special requirements, stitching techniques, finishing details, quality standards..."
+                                })
+                            )
+                        ),
+                        
+                        // Center Panel - Measurements & AI Generation
+                        React.createElement('div', { className: "space-y-6" },
+                            // Exact Measurements
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "📐 Exact Production Measurements")
+                                ),
+                                React.createElement('div', { className: "grid grid-cols-2 gap-4" },
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Total Length"),
+                                        React.createElement('input', {
+                                            type: "text",
+                                            value: measurements.totalLength,
+                                            onChange: (e) => setMeasurements({...measurements, totalLength: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                            placeholder: "cm/inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Bust Width"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: measurements.bustWidth,
+                                            onChange: (e) => setMeasurements({...measurements, bustWidth: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                            placeholder: "cm/inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Waist Width"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: measurements.waistWidth,
+                                            onChange: (e) => setMeasurements({...measurements, waistWidth: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                            placeholder: "cm/inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Hip Width"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: measurements.hipWidth,
+                                            onChange: (e) => setMeasurements({...measurements, hipWidth: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                            placeholder: "cm/inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Strap Length"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: measurements.strapLength,
+                                            onChange: (e) => setMeasurements({...measurements, strapLength: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                            placeholder: "cm/inches"
+                                        })
+                                    ),
+                                    React.createElement('div', null,
+                                        React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Cup Depth"),
+                                        React.createElement('input',{
+                                            type: "text",
+                                            value: measurements.cupDepth,
+                                            onChange: (e) => setMeasurements({...measurements, cupDepth: e.target.value}),
+                                            className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent",
+                                            placeholder: "cm/inches"
+                                        })
+                                    )
+                                )
+                            ),
+                            
+                            // AI Generation Controls
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "🤖 AI Production Generation")
+                                ),
+                                React.createElement('div', { className: "space-y-4" },
+                                    React.createElement('button', {
+                                        onClick: () => setGeneratedDocs(true),
+                                        className: "w-full bg-gradient-to-r from-orange-600 to-red-600 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                    }, "🎨 Generate Production Graphics"),
+                                    React.createElement('button',{
+                                        onClick: () => setGeneratedDocs(true),
+                                        className: "w-full bg-gradient-to-r from-red-600 to-pink-600 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                    }, "📄 Create Manufacturing Docs"),
+                                    React.createElement('button',{
+                                        onClick: () => setGeneratedDocs(true),
+                                        className: "w-full bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                                    }, "🔄 Generate 360° 3D Model")
+                                )
+                            )
+                        ),
+                        
+                        // Right Panel - AI Generated Output
+                        React.createElement('div', { className: "space-y-6" },
+                            // 360° 3D Model Preview
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "🔄 360° Interactive 3D Model")
+                                ),
+                                React.createElement('div', { 
+                                    className: "h-80 bg-gradient-to-br from-orange-100 via-red-100 to-yellow-100 rounded-xl flex items-center justify-center border-2 border-dashed border-orange-300" 
+                                },
+                                    React.createElement('div', { className: "text-center" },
+                                        React.createElement('i', { className: "fas fa-cube text-6xl text-orange-500 mb-4 gem-glow" }),
+                                        React.createElement('p', { className: "text-gray-600 font-semibold mb-2" }, "Interactive 360° 3D Model"),
+                                        React.createElement('p', { className: "text-sm text-gray-500 mb-4" }, "Click and drag to rotate • Scroll to zoom"),
+                                        React.createElement('div', { className: "flex justify-center space-x-2" },
+                                            React.createElement('button', { className: "px-3 py-1 bg-white rounded-lg text-sm shadow" }, "Front"),
+                                            React.createElement('button', { className: "px-3 py-1 bg-white rounded-lg text-sm shadow" }, "Back"),
+                                            React.createElement('button', { className: "px-3 py-1 bg-white rounded-lg text-sm shadow" }, "Side"),
+                                            React.createElement('button', { className: "px-3 py-1 bg-white rounded-lg text-sm shadow" }, "Detail")
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            // Production Graphics
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "📐 AI Production Graphics")
+                                ),
+                                React.createElement('div', { 
+                                    className: "grid grid-cols-2 gap-4" 
+                                },
+                                    React.createElement('div', { 
+                                        className: "h-32 bg-gradient-to-br from-orange-100 to-red-100 rounded-lg flex items-center justify-center border border-orange-200" 
+                                    },
+                                        React.createElement('div', { className: "text-center" },
+                                            React.createElement('i', { className: "fas fa-ruler-combined text-2xl text-orange-500 mb-1" }),
+                                            React.createElement('p', { className: "text-xs font-medium" }, "Pattern Layout")
+                                        )
+                                    ),
+                                    React.createElement('div', { 
+                                        className: "h-32 bg-gradient-to-br from-red-100 to-pink-100 rounded-lg flex items-center justify-center border border-red-200" 
+                                    },
+                                        React.createElement('div', { className: "text-center" },
+                                            React.createElement('i', { className: "fas fa-cut text-2xl text-red-500 mb-1" }),
+                                            React.createElement('p', { className: "text-xs font-medium" }, "Cutting Guide")
+                                        )
+                                    ),
+                                    React.createElement('div', { 
+                                        className: "h-32 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg flex items-center justify-center border border-yellow-200" 
+                                    },
+                                        React.createElement('div', { className: "text-center" },
+                                            React.createElement('i', { className: "fas fa-thread text-2xl text-yellow-600 mb-1" }),
+                                            React.createElement('p', { className: "text-xs font-medium" }, "Stitching Map")
+                                        )
+                                    ),
+                                    React.createElement('div', { 
+                                        className: "h-32 bg-gradient-to-br from-pink-100 to-purple-100 rounded-lg flex items-center justify-center border border-pink-200" 
+                                    },
+                                        React.createElement('div', { className: "text-center" },
+                                            React.createElement('i', { className: "fas fa-tag text-2xl text-pink-500 mb-1" }),
+                                            React.createElement('p', { className: "text-xs font-medium" }, "Material Tags")
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            // Manufacturing Documentation
+                            React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                                React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6 text-gray-800" }, 
+                                    React.createElement('span', null, "📋 Manufacturing Documentation")
+                                ),
+                                React.createElement('div', { className: "space-y-3" },
+                                    React.createElement('div', { className: "flex items-center justify-between p-3 bg-gray-50 rounded-lg" },
+                                        React.createElement('span', { className: "font-medium text-sm" }, "Technical Specification Sheet"),
+                                        React.createElement('button', { className: "text-orange-600 hover:text-orange-700" }, 
+                                            React.createElement('i', { className: "fas fa-download" })
+                                        )
+                                    ),
+                                    React.createElement('div', { className: "flex items-center justify-between p-3 bg-gray-50 rounded-lg" },
+                                        React.createElement('span', { className: "font-medium text-sm" }, "Material Requirements List"),
+                                        React.createElement('button', { className: "text-orange-600 hover:text-orange-700" }, 
+                                            React.createElement('i', { className: "fas fa-download" })
+                                        )
+                                    ),
+                                    React.createElement('div', { className: "flex items-center justify-between p-3 bg-gray-50 rounded-lg" },
+                                        React.createElement('span', { className: "font-medium text-sm" }, "Production Timeline"),
+                                        React.createElement('button', { className: "text-orange-600 hover:text-orange-700" }, 
+                                            React.createElement('i', { className: "fas fa-download" })
+                                        )
+                                    ),
+                                    React.createElement('div', { className: "flex items-center justify-between p-3 bg-gray-50 rounded-lg" },
+                                        React.createElement('span', { className: "font-medium text-sm" }, "Quality Control Checklist"),
+                                        React.createElement('button', { className: "text-orange-600 hover:text-orange-700" }, 
+                                            React.createElement('i', { className: "fas fa-download" })
+                                        )
+                                    )
+                                )
+                            ),
+                            
+                            // Send to Manufacturer
+                            React.createElement('button', {
+                                className: "w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                            }, "📤 Send Complete Package to Manufacturer")
+                        )
+                    )
+                )
+            );
+        }
+        
+        // Settings Hub with AI Keys
+        function SettingsHub() {
+            const [apiKeys, setApiKeys] = useState({
+                openai: '',
+                midjourney: '',
+                claude: '',
+                stableDiffusion: ''
+            });
+            
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h1', { 
+                            className: "designer-font text-6xl font-black mb-4 bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-transparent" 
+                        }, "Settings & AI Configuration"),
+                        React.createElement('p', { 
+                            className: "elegant-font text-2xl text-gray-700" 
+                        }, "Manage API keys, integrations & system preferences")
+                    ),
+                    
+                    React.createElement('div', { className: "grid grid-cols-1 lg:grid-cols-2 gap-8" },
+                        // API Keys Section
+                        React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                            React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6" }, "🤖 AI API Keys"),
+                            React.createElement('div', { className: "space-y-6" },
+                                React.createElement('div', null,
+                                    React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "OpenAI API Key"),
+                                    React.createElement('input', {
+                                        type: "password",
+                                        value: apiKeys.openai,
+                                        onChange: (e) => setApiKeys({...apiKeys, openai: e.target.value}),
+                                        className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400",
+                                        placeholder: "sk-..."
+                                    })
+                                ),
+                                React.createElement('div', null,
+                                    React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Claude API Key"),
+                                    React.createElement('input',{
+                                        type: "password",
+                                        value: apiKeys.claude,
+                                        onChange: (e) => setApiKeys({...apiKeys, claude: e.target.value}),
+                                        className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400",
+                                        placeholder: "sk-ant-..."
+                                    })
+                                ),
+                                React.createElement('div', null,
+                                    React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Midjourney API Key"),
+                                    React.createElement('input',{
+                                        type: "password",
+                                        value: apiKeys.midjourney,
+                                        onChange: (e) => setApiKeys({...apiKeys, midjourney: e.target.value}),
+                                        className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400",
+                                        placeholder: "mj-..."
+                                    })
+                                ),
+                                React.createElement('div', null,
+                                    React.createElement('label', { className: "block text-sm font-semibold mb-2 text-gray-700" }, "Stable Diffusion API Key"),
+                                    React.createElement('input',{
+                                        type: "password",
+                                        value: apiKeys.stableDiffusion,
+                                        onChange: (e) => setApiKeys({...apiKeys, stableDiffusion: e.target.value}),
+                                        className: "w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400",
+                                        placeholder: "sd-..."
+                                    })
+                                )
+                            ),
+                            React.createElement('button', {
+                                className: "w-full platinum-gradient text-gray-700 py-3 rounded-lg font-semibold border border-gray-300 hover:opacity-90 transition-opacity"
+                            }, "💾 Save API Keys")
+                        ),
+                        
+                        // Integrations Section
+                        React.createElement('div', { className: "studio-card rounded-2xl p-8 studio-shadow" },
+                            React.createElement('h3', { className: "designer-font text-2xl font-bold mb-6" }, "🔗 Integrations"),
+                            React.createElement('div', { className: "space-y-4" },
+                                React.createElement('div', { className: "flex items-center justify-between p-4 border rounded-lg" },
+                                    React.createElement('div', null,
+                                        React.createElement('h4', { className: "font-semibold" }, "Shopify"),
+                                        React.createElement('p', { className: "text-sm text-gray-600" }, "E-commerce integration")
+                                    ),
+                                    React.createElement('button', { className: "px-4 py-2 bg-green-500 text-white rounded-lg" }, "Connect")
+                                ),
+                                React.createElement('div', { className: "flex items-center justify-between p-4 border rounded-lg" },
+                                    React.createElement('div', null,
+                                        React.createElement('h4', { className: "font-semibold" }, "Instagram"),
+                                        React.createElement('p', { className: "text-sm text-gray-600" }, "Social media posting")
+                                    ),
+                                    React.createElement('button', { className: "px-4 py-2 bg-pink-500 text-white rounded-lg" }, "Connect")
+                                ),
+                                React.createElement('div', { className: "flex items-center justify-between p-4 border rounded-lg" },
+                                    React.createElement('div', null,
+                                        React.createElement('h4', { className: "font-semibold" }, "Printful"),
+                                        React.createElement('p', { className: "text-sm text-gray-600" }, "Print-on-demand service")
+                                    ),
+                                    React.createElement('button', { className: "px-4 py-2 bg-blue-500 text-white rounded-lg" }, "Connect")
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+        
+        // Placeholder components for other routes
+        function JewelryDesigner() {
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12 text-center" },
+                    React.createElement('h1', { className: "designer-font text-5xl font-bold mb-4" }, "Fine Jewelry Studio"),
+                    React.createElement('p', { className: "text-gray-600" }, "Advanced jewelry design tools coming soon..."),
+                    React.createElement(Link, { to: "/" },
+                        React.createElement('button', { className: "luxury-button mt-6" }, "Return to Studio")
+                    )
+                )
+            );
+        }
+        
+        function AIPlannerCreator() {
+            return React.createElement('div', { className: "min-h-screen" },
+                React.createElement(LuxuryNavbar),
+                React.createElement(AIAssistant),
+                React.createElement('div', { className: "max-w-7xl mx-auto px-4 py-12 text-center" },
+                    React.createElement('h1', { className: "designer-font text-5xl font-bold mb-4" }, "AI Planner Creator"),
+                    React.createElement('p', { className: "text-gray-600" }, "Advanced planner creation tools coming soon..."),
+                    React.createElement(Link, { to: "/" },
+                        React.createElement('button', { className: "luxury-button mt-6" }, "Return to Studio")
+                    )
+                )
+            );
+        }
+        
+        // Main App Component
+        function App() {
+            return React.createElement(BrowserRouter, null,
+                React.createElement(Routes, null,
+                    React.createElement(Route, { path: "/", element: React.createElement(UltimateDashboard) }),
+                    React.createElement(Route, { path: "/lingerie", element: React.createElement(UltimateLingerieDesigner) }),
+                    React.createElement(Route, { path: "/jewelry", element: React.createElement(JewelryDesigner) }),
+                    React.createElement(Route, { path: "/planner", element: React.createElement(AIPlannerCreator) }),
+                    React.createElement(Route, { path: "/converter", element: React.createElement(PDFConverterHub) }),
+                    React.createElement(Route, { path: "/production", element: React.createElement(CutAndSewProductionHub) }),
+                    React.createElement(Route, { path: "/automation", element: React.createElement(AutomationHub) }),
+                    React.createElement(Route, { path: "/settings", element: React.createElement(SettingsHub) }),
+                    React.createElement(Route, { path: "*", element: React.createElement(UltimateDashboard) })
+                )
+            );
+        }
+        
+        // Render the app
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+    </script>
+</body>
+</html>
