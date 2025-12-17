@@ -1,0 +1,21 @@
+total 284
+drwxr-xr-x  3 user user   4096 Dec  8 19:44 .
+drwxr-xr-x 20 root root   4096 Nov 25 05:51 ..
+-rw-r--r--  1 root root    757 Dec  8 19:44 .dockerignore
+-rw-r--r--  1 root root    312 Dec  8 19:44 .env
+-rw-r--r--  1 root root    269 Dec  8 19:44 .gitignore
+-rw-r--r--  1 root root     22 Dec  8 19:44 .npmrc
+-rw-r--r--  1 root root     66 Dec  8 19:44 .prettierrc
+-rw-r--r--  1 root root   4988 Dec  8 19:44 AGENTS.md
+-rw-r--r--  1 root root    417 Dec  8 19:44 components.json
+-rw-r--r--  1 root root    310 Dec  8 19:44 index.html
+-rw-r--r--  1 root root    284 Dec  8 19:44 netlify.toml
+drwxr-xr-x  2 root root   4096 Dec  8 19:44 outputs
+-rw-r--r--  1 root root   3351 Dec  8 19:44 package.json
+-rw-r--r--  1 root root 206861 Dec  8 19:44 pnpm-lock.yaml
+-rw-r--r--  1 root root     81 Dec  8 19:44 postcss.config.js
+-rw-r--r--  1 root root   3372 Dec  8 19:44 tailwind.config.ts
+-rw-r--r--  1 root root    732 Dec  8 19:44 todo.md
+-rw-r--r--  1 root root   1005 Dec  8 19:44 tsconfig.json
+-rw-r--r--  1 root root   1126 Dec  8 19:44 vite.config.server.ts
+-rw-r--r--  1 root root    949 Dec  8 19:44 vite.config.ts

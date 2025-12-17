@@ -1,0 +1,10 @@
+total 28
+drwxr-xr-x 2 root root 4096 Dec  8 19:44 .
+drwxr-xr-x 3 user user 4096 Dec  8 19:44 ..
+-rw-r--r-- 1 root root 3351 Dec  8 19:44 workspace_output_1765223063_2787.txt
+-rw-r--r-- 1 root root  310 Dec  8 19:44 workspace_output_1765223064_9607.txt
+-rw-r--r-- 1 root root 1126 Dec  8 19:44 workspace_output_1765223066_5781.txt
+-rw-r--r-- 1 root root  949 Dec  8 19:44 workspace_output_1765223070_3457.txt
+-rw-r--r-- 1 root root 1126 Dec  8 19:44 workspace_output_1765223072_4106.txt
+-rw-r--r-- 1 root root    0 Dec  8 19:44 workspace_output_1765223084_4555.txt
+-rw-r--r-- 1 root root    0 Dec  8 19:44 workspace_output_1765223085_3727.txt

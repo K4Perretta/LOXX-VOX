@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Luxury Design Empire - Designer Studio</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700&family=Didot:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .luxury-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .elegant-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .designer-font {
+            font-family: 'Didot', serif;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #B8860B, #FFD700);
+        }
+        .rose-gold-gradient {
+            background: linear-gradient(135deg, #E0B6B6, #F7E7CE, #D4A574, #F7E7CE);
+        }
+        .platinum-gradient {
+            background: linear-gradient(135deg, #E5E4E2, #F5F5F5, #C0C0C0, #F5F5F5);
+        }
+        .diamond-gradient {
+            background: linear-gradient(135deg, #B9F2FF, #E0F7FF, #FFFFFF, #E0F7FF);
+        }
+        .sapphire-gradient {
+            background: linear-gradient(135deg, #0F52BA, #4169E1, #6495ED, #4169E1);
+        }
+        .emerald-gradient {
+            background: linear-gradient(135deg, #50C878, #00A86B, #228B22, #00A86B);
+        }
+        .ruby-gradient {
+            background: linear-gradient(135deg, #E0115F, #DC143C, #B22222, #DC143C);
+        }
+        .designer-shadow {
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.2);
+        }
+        .studio-shadow {

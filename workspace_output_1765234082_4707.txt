@@ -1,0 +1,4 @@
+-rw-r--r-- 1 root root 100034 Dec  8 22:39 ULTIMATE-LUXURY-EMPIRE.html
+-rw-r--r-- 1 root root    310 Dec  8 19:44 index.html
+-rw-r--r-- 1 root root  46070 Dec  8 22:07 luxury-fashion-empire.html
+-rw-r--r-- 1 root root  17209 Dec  8 21:53 standalone.html

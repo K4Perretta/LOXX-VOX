@@ -1,0 +1,20 @@
+            return React.createElement(BrowserRouter, null,
+                React.createElement(Routes, null,
+                    React.createElement(Route, { path: "/", element: React.createElement(UltimateDashboard) }),
+                    React.createElement(Route, { path: "/lingerie", element: React.createElement(UltimateLingerieDesigner) }),
+                    React.createElement(Route, { path: "/jewelry", element: React.createElement(JewelryDesigner) }),
+                    React.createElement(Route, { path: "/planner", element: React.createElement(AIPlannerCreator) }),
+                    React.createElement(Route, { path: "/converter", element: React.createElement(PDFConverterHub) }),
+                    React.createElement(Route, { path: "/production", element: React.createElement(CutAndSewProductionHub) }),
+                    React.createElement(Route, { path: "/automation", element: React.createElement(AutomationHub) }),
+                    React.createElement(Route, { path: "/settings", element: React.createElement(SettingsHub) }),
+                    React.createElement(Route, { path: "*", element: React.createElement(UltimateDashboard) })
+                )
+            );
+        }
+        
+        // Render the app
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+    </script>
+</body>
+</html>
